@@ -1,0 +1,43 @@
+{
+  "name": "smithy",
+  "version": "0.0.1",
+  "description": "Preprocessing of CSS/JS meta-languages made easy through a singular API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=testing ./node_modules/.bin/mocha $(find test -name '*.test.js')"
+  },
+  "dependencies": {
+    "canihaz": "1.0.x"
+  },
+  "devDependencies": {
+    "chai": "1.8.x",
+    "mocha": "1.13.x",
+    "pre-commit": "0.0.x"
+  },
+  "canihaz": {
+    "coffee-script": "1.6.x",
+    "less": "1.4.x",
+    "nib": "1.0.x",
+    "node-sass": "0.6.x",
+    "stylus": "0.38.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/observing/smithy.git"
+  },
+  "keywords": [
+    "Preprocessing",
+    "sass",
+    "less",
+    "stylus",
+    "coffeescript",
+    "CSS",
+    "JS",
+    "javascript"
+  ],
+  "author": "Martijn Swaagman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/observing/smithy/issues"
+  }
+}
