@@ -18,7 +18,7 @@ Object.keys(processors).forEach(function lazyrequire(extension) {
 
   Object.defineProperty(exports, extension, {
       get: function getter() {
-        return cache || (cache = require('./' + processors[extension]));
+        return cache || (cache = require('./lib/' + processors[extension]));
       }
   });
 });
