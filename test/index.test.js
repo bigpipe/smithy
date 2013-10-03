@@ -11,4 +11,21 @@ describe('Smithy', function () {
     expect(smithy).to.have.property('less');
     expect(smithy).to.have.property('coffee');
   });
+
+  describe('#coffeescript', function () {
+    it('can compile to extensions: [ JS ]', function () {
+      expect(smithy.coffee).to.have.property('extensions');
+      expect(smithy.coffee.extensions).to.have.include('js');
+    });
+
+    it('by default exports to extension: JS', function () {
+      expect(smithy.coffee).to.have.property('export', 'js');
+    });
+
+    it('handles require import statements', function () {
+      expect(smithy.coffee).to.have.property('regexp');
+      expect(smithy.coffee.regexp.toString()).to.equal(/require.[\'\"]\.([^\'\"]+)[\'\"]/gm.toString());
+      expect(smithy.coffee.regexp.test('require "./random.coffee"')).to.equal(true);
+    });
+  });
 });
