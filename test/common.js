@@ -7,6 +7,9 @@ chai.Assertion.includeStack = true;
 // Expose smithy
 //
 exports.smithy = require('../');
+exports.fs = require('fs');
+exports.canihaz = require('canihaz')('smithy');
+
 
 //
 // Expose our assertions.
