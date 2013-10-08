@@ -79,6 +79,7 @@ describe('Smithy', function () {
     });
 
     it('exposes the stylus compiler',function (done) {
+      this.timeout(2E4);
       var content = fs.readFileSync(__dirname + '/fixtures/stylus.styl', 'utf-8');
 
       smithy.styl(content, {}, function (error, processed) {

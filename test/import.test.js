@@ -16,7 +16,7 @@ describe('Importer', function () {
     var result = standard(__dirname + '/fixtures/less.less');
 
     expect(result).to.be.an('array');
-    expect(result).to.include('/home/swaagie/projects/smithy/test/fixtures/imports/less.less');
+    expect(result[0]).to.include('test/fixtures/imports/less.less');
     expect(result).to.have.length(1);
   });
 
