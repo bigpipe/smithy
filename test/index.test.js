@@ -7,9 +7,17 @@ describe('Smithy', function () {
     , canihaz = common.canihaz
     , expect = common.expect;
 
-  // preload the processor.
+  // preload the processors.
   before(function (done) {
-   canihaz['coffee-script'](done);
+    this.timeout(6E5);
+
+    var i = 0;
+    function iterate () { if (i++ === 3) done(); }
+
+    canihaz['coffee-script'](iterate);
+    canihaz.less(iterate);
+    canihaz['node-sass'](iterate);
+    canihaz.stylus(iterate);
   });
 
   it('exposes each of the available meta-languages', function () {
@@ -29,7 +37,7 @@ describe('Smithy', function () {
       expect(smithy.coffee).to.have.property('export', 'js');
     });
 
-    it('handles require import statements', function () {
+    it('handles require statements in the content', function () {
       expect(smithy.coffee).to.have.property('regexp');
       expect(smithy.coffee.regexp.toString()).to.equal(/require.['"]\.([^'"]+)['"]/gm.toString());
       expect(smithy.coffee.regexp.test('require "./random.coffee"')).to.equal(true);
@@ -50,6 +58,40 @@ describe('Smithy', function () {
       smithy.coffee(undefined, {}, function (error, content) {
         expect(error).to.be.an.instanceof(Error);
         expect(error.message).to.include('Cannot call method');
+        expect(content).to.equal(undefined);
+        done();
+      });
+    });
+  });
+
+  describe('#stylus', function () {
+    it('can compile to extensions: [ CSS ]', function () {
+      expect(smithy.styl).to.have.property('extensions');
+      expect(smithy.styl.extensions).to.have.include('css');
+    });
+
+    it('by default exports to extension: CSS', function () {
+      expect(smithy.styl).to.have.property('export', 'css');
+    });
+
+    it('defers handling of import statements to general function', function () {
+      expect(smithy.styl).to.not.have.property('regexp');
+    });
+
+    it('exposes the coffeescript compiler',function (done) {
+      var content = fs.readFileSync(__dirname + '/fixtures/stylus.styl', 'utf-8');
+
+      smithy.styl(content, {}, function (error, processed) {
+        expect(error).to.equal(null);
+        expect(processed).to.include("#header {\n  color: #4d926f;\n");
+        done();
+      });
+    });
+
+    it('will return an error on false input', function (done) {
+      smithy.styl('false css #garbage\ncolor:lol', {}, function (error, content) {
+        expect(error).to.be.an.instanceof(Error);
+        expect(error.message).to.include('color:lol\n\nexpected "indent", got "eos"\n');
         expect(content).to.equal(undefined);
         done();
       });

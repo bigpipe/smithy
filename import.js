@@ -8,14 +8,14 @@ var fs = require('fs')
 
 /**
  * Expose the importer and allow configuration of the import/require statement.
- * The regular expression defaults to /@import\s[\"\']?([^\'\"]+)[\"\']?/gm
+ * The regular expression defaults to /@import\s["']?([^'"]+)["']?/gm
  *
  * @param {RegExp} regexp regular expression to check against imports.
  * @return {Function} import functionality
  * @api public
  */
 module.exports = function importer(regexp) {
-  regexp = regexp || /@import\s[\"\']?([^\'\"]+)[\"\']?/gm;
+  regexp = regexp || /@import\s["']?([^'"]+)["']?/gm;
 
   /**
    * Parse potential import statements from supplied content. It should
