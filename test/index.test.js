@@ -79,9 +79,9 @@ describe('Smithy', function () {
     });
 
     it('exposes the stylus compiler',function (done) {
-      this.timeout(2E4);
       var content = fs.readFileSync(__dirname + '/fixtures/stylus.styl', 'utf-8');
 
+      this.timeout(2E4);
       smithy.styl(content, {}, function (error, processed) {
         expect(error).to.equal(null);
         expect(processed).to.include("#header {\n  color: #4d926f;\n");
@@ -116,6 +116,7 @@ describe('Smithy', function () {
     it('exposes the less compiler',function (done) {
       var content = fs.readFileSync(__dirname + '/fixtures/less.less', 'utf-8');
 
+      this.timeout(2E4);
       smithy.less(content, { paths: [  __dirname + '/fixtures' ] }, function (error, processed) {
         expect(error).to.equal(null);
         expect(processed).to.include("#header {\n  color: #4d926f;\n");
@@ -150,6 +151,7 @@ describe('Smithy', function () {
     it('exposes the sass compiler',function (done) {
       var content = fs.readFileSync(__dirname + '/fixtures/sass.sass', 'utf-8');
 
+      this.timeout(2E4);
       smithy.sass(content, { includePaths: [ __dirname + '/fixtures' ] }, function (processed) {
         expect(processed).to.include("#body {\n  color: #4d926f; }\n\n#header");
         done();
