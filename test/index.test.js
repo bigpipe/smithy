@@ -132,4 +132,36 @@ describe('Smithy', function () {
     });
   });
 
+  describe('#sass', function () {
+    it('can compile to extensions: [ CSS ]', function () {
+      expect(smithy.sass).to.have.property('extensions');
+      expect(smithy.sass.extensions).to.have.include('css');
+    });
+
+    it('by default exports to extension: CSS', function () {
+      expect(smithy.sass).to.have.property('export', 'css');
+    });
+
+    it('defers handling of import statements to general function', function () {
+      expect(smithy.sass).to.not.have.property('regexp');
+    });
+
+    it('exposes the sass compiler',function (done) {
+      var content = fs.readFileSync(__dirname + '/fixtures/sass.sass', 'utf-8');
+
+      smithy.sass(content, { includePaths: [ __dirname + '/fixtures' ] }, function (processed) {
+        expect(processed).to.include("#body {\n  color: #4d926f; }\n\n#header");
+        done();
+      });
+    });
+
+    it('will return an error on false input', function (done) {
+      smithy.sass('false css #garbage\ncolor:lol', {}, function (error, content) {
+        expect(error).to.be.a('string');
+        expect(error).to.equal('source string:1: error: invalid top-level expression\n');
+        expect(content).to.equal(undefined);
+        done();
+      });
+    });
+  });
 });
