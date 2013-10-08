@@ -78,7 +78,7 @@ describe('Smithy', function () {
       expect(smithy.styl).to.not.have.property('regexp');
     });
 
-    it('exposes the coffeescript compiler',function (done) {
+    it('exposes the stylus compiler',function (done) {
       var content = fs.readFileSync(__dirname + '/fixtures/stylus.styl', 'utf-8');
 
       smithy.styl(content, {}, function (error, processed) {
@@ -97,4 +97,39 @@ describe('Smithy', function () {
       });
     });
   });
+
+  describe('#less', function () {
+    it('can compile to extensions: [ CSS ]', function () {
+      expect(smithy.less).to.have.property('extensions');
+      expect(smithy.less.extensions).to.have.include('css');
+    });
+
+    it('by default exports to extension: CSS', function () {
+      expect(smithy.less).to.have.property('export', 'css');
+    });
+
+    it('defers handling of import statements to general function', function () {
+      expect(smithy.less).to.not.have.property('regexp');
+    });
+
+    it('exposes the less compiler',function (done) {
+      var content = fs.readFileSync(__dirname + '/fixtures/less.less', 'utf-8');
+
+      smithy.less(content, { paths: [  __dirname + '/fixtures' ] }, function (error, processed) {
+        expect(error).to.equal(null);
+        expect(processed).to.include("#header {\n  color: #4d926f;\n");
+        done();
+      });
+    });
+
+    it('will return an error on false input', function (done) {
+      smithy.less('false css #garbage\ncolor:lol', {}, function (error, content) {
+        expect(error).to.be.an.instanceof(Error);
+        expect(error.message).to.include(' > 2| color:lol\n\n Unrecognised input');
+        expect(content).to.equal(undefined);
+        done();
+      });
+    });
+  });
+
 });
