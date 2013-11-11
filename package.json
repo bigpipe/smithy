@@ -1,6 +1,6 @@
 {
   "name": "smithy",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Preprocessing of CSS/JS meta-languages made easy through a singular API.",
   "main": "index.js",
   "scripts": {
@@ -11,15 +11,15 @@
   },
   "devDependencies": {
     "chai": "1.8.x",
-    "mocha": "1.13.x",
+    "mocha": "1.14.x",
     "pre-commit": "0.0.x"
   },
   "canihaz": {
     "coffee-script": "1.6.x",
-    "less": "1.4.x",
+    "less": "1.5.x",
     "nib": "1.0.x",
-    "node-sass": "0.6.x",
-    "stylus": "0.38.x"
+    "node-sass": "0.7.x",
+    "stylus": "0.40.x"
   },
   "repository": {
     "type": "git",
