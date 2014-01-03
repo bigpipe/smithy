@@ -11,15 +11,15 @@
   },
   "devDependencies": {
     "chai": "1.8.x",
-    "mocha": "1.14.x",
+    "mocha": "1.16.x",
     "pre-commit": "0.0.x"
   },
   "canihaz": {
     "coffee-script": "1.6.x",
-    "less": "1.5.x",
+    "less": "1.6.x",
     "nib": "1.0.x",
     "node-sass": "0.7.x",
-    "stylus": "0.40.x"
+    "stylus": "0.41.x"
   },
   "repository": {
     "type": "git",
