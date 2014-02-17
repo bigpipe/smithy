@@ -22,3 +22,8 @@ Object.keys(processors).forEach(function lazyrequire(extension) {
       }
   });
 });
+
+//
+// Expose the list of preprocessors by file extension.
+//
+exports.processors = processors;
