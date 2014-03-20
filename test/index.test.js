@@ -153,16 +153,15 @@ describe('Smithy', function () {
 
       this.timeout(2E4);
       smithy.sass(content, { includePaths: [ __dirname + '/fixtures' ] }, function (processed) {
-        expect(processed).to.include("#body {\n  color: #4d926f; }\n\n#header");
+        expect(processed).to.include("#body {\n  color: #4D926F; }\n\n#header");
         done();
       });
     });
 
     it('will return an error on false input', function (done) {
-      smithy.sass('false css #garbage\ncolor:lol', {}, function (error, content) {
+      smithy.sass('false css #garbage\ncolor:lol', {}, function (error) {
         expect(error).to.be.a('string');
         expect(error).to.equal('source string:1: error: invalid top-level expression\n');
-        expect(content).to.equal(undefined);
         done();
       });
     });
