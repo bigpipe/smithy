@@ -5,9 +5,11 @@
 //
 var processors = {
     styl: 'stylus'
+  , stylus: 'stylus'
   , less: 'less'
   , sass: 'sass'
   , coffee: 'coffeescript'
+  , coffeescript: 'coffeescript'
 };
 
 //
@@ -24,6 +26,13 @@ Object.keys(processors).forEach(function lazyrequire(extension) {
 });
 
 //
-// Expose the list of preprocessors by file extension.
+// Expose map of preprocessors by file extension.
 //
 exports.processors = processors;
+
+//
+// Expose list of extensions.
+//
+exports.extensions = Object.keys(processors).map(function map(ext) {
+  return '.' + ext;
+});
