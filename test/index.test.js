@@ -99,6 +99,89 @@ describe('Smithy', function () {
     });
   });
 
+  describe('#rework', function () {
+    var content = fs.readFileSync(__dirname + '/fixtures/rework.css', 'utf-8');
+
+    it('can compile to extensions: [ CSS ]', function () {
+      expect(smithy.css).to.have.property('extensions');
+      expect(smithy.css.extensions).to.have.include('css');
+    });
+
+    it('by default exports to extension: CSS', function () {
+      expect(smithy.css).to.have.property('export', 'css');
+    });
+
+    it('defers handling of import statements to general function', function () {
+      expect(smithy.css).to.not.have.property('regexp');
+    });
+
+    it('exposes the rework compiler', function (done) {
+      this.timeout(2E4);
+      smithy.css(content, function (error, processed) {
+        expect(error).to.equal(null);
+        expect(processed).to.include("#header {\n  color: #4d926f;\n");
+        done();
+      });
+    });
+
+    it('exposes default plugins via instance', function (done) {
+      this.timeout(2E4);
+
+      function plug() {
+        var rework = this;
+
+        expect(rework).to.have.property('prefix');
+        expect(rework).to.have.property('prefixSelectors');
+        expect(rework.prefix).to.be.a('function');
+        expect(rework.prefixSelectors).to.be.a('function');
+      }
+
+      smithy.css(content, { plugins: [ plug ] }, function (error, processed) {
+        expect(processed).to.include("#header {\n  color: #4d926f;\n");
+        done();
+      });
+    });
+
+    it('can namespace all selectors', function (done) {
+      this.timeout(2E4);
+
+      expect(smithy.css.plugins).to.be.an('object');
+      expect(smithy.css.plugins).to.have.property('namespace');
+      expect(smithy.css.plugins.namespace).to.be.an('function');
+
+      var plug = smithy.css.plugins.namespace('mynamespace');
+      smithy.css(content, { plugins: [ plug ] }, function (error, processed) {
+        expect(error).to.equal(null);
+        expect(processed).to.include("mynamespace #header {\n  color: #4d926f;\n");
+        done();
+      });
+    });
+
+    it('can namespace inside media queries',function (done) {
+      var content = fs.readFileSync(__dirname + '/fixtures/reworkmedia.css', 'utf-8')
+        , plug = smithy.css.plugins.namespace('mynamespace');
+
+      this.timeout(2E4);
+      smithy.css(content, { plugins: [ plug ] }, function (error, processed) {
+        expect(error).to.equal(null);
+        expect(processed).to.include("@media handheld, only screen and (max-width: 767px) {\n  mynamespace .box {\n");
+        done();
+      });
+    });
+
+    it('can namespace but ignores @font-face',function (done) {
+      var content = fs.readFileSync(__dirname + '/fixtures/reworkfont.css', 'utf-8')
+        , plug = smithy.css.plugins.namespace('mynamespace');
+
+      this.timeout(2E4);
+      smithy.css(content, { plugins: [ plug ] }, function (error, processed) {
+        expect(error).to.equal(null);
+        expect(processed).to.equal("@font-face {\n  font-family: \"SSSocial\";\n}");
+        done();
+      });
+    });
+  });
+
   describe('#less', function () {
     it('can compile to extensions: [ CSS ]', function () {
       expect(smithy.less).to.have.property('extensions');
