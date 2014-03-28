@@ -1,6 +1,6 @@
 {
   "name": "smithy",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Preprocessing of CSS/JS meta-languages made easy through a singular API.",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,8 @@
     "less": "1.7.x",
     "nib": "1.0.x",
     "node-sass": "0.8.x",
-    "stylus": "0.42.x"
+    "stylus": "0.42.x",
+    "rework": "0.20.2"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "sass",
     "less",
     "stylus",
+    "rework",
     "coffeescript",
     "CSS",
     "JS",

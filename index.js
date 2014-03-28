@@ -4,12 +4,13 @@
 // Define set of pre-processors to expose.
 //
 var processors = {
-    styl: 'stylus'
-  , stylus: 'stylus'
-  , less: 'less'
-  , sass: 'sass'
-  , coffee: 'coffeescript'
-  , coffeescript: 'coffeescript'
+  styl: 'stylus',
+  stylus: 'stylus',
+  less: 'less',
+  sass: 'sass',
+  coffee: 'coffeescript',
+  coffeescript: 'coffeescript',
+  css: 'rework'
 };
 
 //
