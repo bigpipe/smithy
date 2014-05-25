@@ -19,8 +19,9 @@
     "less": "1.7.x",
     "nib": "1.0.x",
     "node-sass": "0.8.x",
-    "stylus": "0.42.x",
-    "rework": "0.20.2"
+    "stylus": "0.45.x",
+    "rework": "0.20.x",
+    "restyle": "0.1.x"
   },
   "repository": {
     "type": "git",
