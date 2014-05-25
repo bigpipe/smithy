@@ -1,9 +1,7 @@
 # Smithy
 
-[![Build
-Status](https://travis-ci.org/observing/smithy.png)](https://travis-ci.org/observing/smithy)
-[![NPM
-version](https://badge.fury.io/js/smithy.png)](http://badge.fury.io/js/smithy)
+[![Build Status](https://travis-ci.org/bigpipe/smithy.png)](https://travis-ci.org/bigpipe/smithy)
+[![NPM version](https://badge.fury.io/js/smithy.png)](http://badge.fury.io/js/smithy)
 
 Preprocessing of CSS/JS meta-languages made easy through a singular API. Smithy
 will not install preprocessing libraries until required. This is done to keep

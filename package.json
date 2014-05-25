@@ -4,7 +4,7 @@
   "description": "Preprocessing of CSS/JS meta-languages made easy through a singular API.",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=testing ./node_modules/.bin/mocha $(find test -name '*.test.js')"
+    "test": "mocha $(find test -name '*.test.js')"
   },
   "dependencies": {
     "canihaz": "1.0.x"
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/observing/smithy.git"
+    "url": "git://github.com/bigpipe/smithy.git"
   },
   "keywords": [
     "Preprocessing",
@@ -40,6 +40,6 @@
   "author": "Martijn Swaagman",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/observing/smithy/issues"
+    "url": "https://github.com/bigpipe/smithy/issues"
   }
 }
