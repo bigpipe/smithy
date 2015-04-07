@@ -57,7 +57,7 @@ describe('Smithy', function () {
     it('will return an error on false input', function (done) {
       smithy.coffee(undefined, {}, function (error, content) {
         expect(error).to.be.an.instanceof(Error);
-        expect(error.message).to.include('Cannot call method');
+        expect(error.message).to.include('Cannot read property');
         expect(content).to.equal(undefined);
         done();
       });
@@ -232,19 +232,19 @@ describe('Smithy', function () {
     });
 
     it('exposes the sass compiler',function (done) {
-      var content = fs.readFileSync(__dirname + '/fixtures/sass.sass', 'utf-8');
+      var content = fs.readFileSync(__dirname + '/fixtures/sass.scss', 'utf-8');
 
       this.timeout(2E4);
-      smithy.sass(content, { includePaths: [ __dirname + '/fixtures' ] }, function (processed) {
-        expect(processed).to.include("#body {\n  color: #4D926F; }\n\n#header");
+      smithy.sass(content, { includePaths: [ __dirname + '/fixtures' ] }, function (error, processed) {
+        expect(processed).to.equal("body {\n  color: #4D926F; }\n\nbody {\n  font: 100% Helvetica, sans-serif;\n  color: #333; }\n");
         done();
       });
     });
 
     it('will return an error on false input', function (done) {
       smithy.sass('false css #garbage\ncolor:lol', {}, function (error) {
-        expect(error).to.be.a('string');
-        expect(error).to.equal('source string:1: error: invalid top-level expression\n');
+        expect(error).to.be.a('object');
+        expect(error.message).to.equal('invalid top-level expression');
         done();
       });
     });
