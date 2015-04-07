@@ -10,6 +10,7 @@ var processors = {
   sass: 'sass',
   coffee: 'coffeescript',
   coffeescript: 'coffeescript',
+  jsx: 'reactjsx',
   css: 'rework'
 };
 

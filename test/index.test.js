@@ -249,4 +249,34 @@ describe('Smithy', function () {
       });
     });
   });
+
+  describe('#jsx', function () {
+    it('can compile to extensions: [ JS ]', function () {
+      expect(smithy.jsx).to.have.property('extensions');
+      expect(smithy.jsx.extensions).to.have.include('js');
+    });
+
+    it('by default exports to extension: JS', function () {
+      expect(smithy.jsx).to.have.property('export', 'js');
+    });
+
+    it('exposes the jsx compiler',function (done) {
+      var content = fs.readFileSync(__dirname + '/fixtures/react.jsx', 'utf-8');
+
+      this.timeout(2E4);
+      smithy.jsx(content, {}, function (error, processed) {
+        expect(processed).to.include('displayName: \'jsxClass\',\n  render: function render() {\n    return (\n      React.createElement("div", null)\n    );\n');
+        done();
+      });
+    });
+
+    it('will return an error on false input', function (done) {
+      smithy.jsx('', {}, function (error) {
+        expect(error).to.be.a('object');
+        expect(error).to.be.instanceof(Error);
+        expect(error.message).to.equal('expected null to be an object');
+        done();
+      });
+    });
+  });
 });
