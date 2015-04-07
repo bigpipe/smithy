@@ -1,6 +1,6 @@
 {
   "name": "smithy",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Preprocessing of CSS/JS meta-languages made easy through a singular API.",
   "main": "index.js",
   "scripts": {
