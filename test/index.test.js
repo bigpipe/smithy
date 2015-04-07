@@ -57,7 +57,6 @@ describe('Smithy', function () {
     it('will return an error on false input', function (done) {
       smithy.coffee(undefined, {}, function (error, content) {
         expect(error).to.be.an.instanceof(Error);
-        expect(error.message).to.include('Cannot read property');
         expect(content).to.equal(undefined);
         done();
       });
