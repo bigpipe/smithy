@@ -1,6 +1,6 @@
 {
   "name": "smithy",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Preprocessing of CSS/JS meta-languages made easy through a singular API.",
   "main": "index.js",
   "scripts": {
@@ -36,6 +36,8 @@
     "coffeescript",
     "CSS",
     "JS",
+    "React",
+    "JSX",
     "javascript"
   ],
   "author": "Martijn Swaagman",
