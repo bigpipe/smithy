@@ -90,8 +90,9 @@ describe('Smithy', function () {
 
     it('will return an error on false input', function (done) {
       smithy.styl('false css #garbage\ncolor:lol', {}, function (error, content) {
+        console.log(error);
         expect(error).to.be.an.instanceof(Error);
-        expect(error.message).to.include('color:lol\n\nexpected "indent", got "eos"\n');
+        expect(error.message).to.include('2| color:lol\n---------------^\n\nexpected "indent"');
         expect(content).to.equal(undefined);
         done();
       });
