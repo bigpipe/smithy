@@ -201,7 +201,9 @@ describe('Smithy', function () {
       this.timeout(2E4);
       smithy.less(content, { paths: [  __dirname + '/fixtures' ] }, function (error, processed) {
         expect(error).to.equal(null);
-        expect(processed).to.include("#header {\n  color: #4D926F;\n");
+        expect(processed).to.include("#header {\n  color:");
+        expect(processed).to.include("#body {\n  color:");
+
         done();
       });
     });
@@ -244,7 +246,7 @@ describe('Smithy', function () {
     it('will return an error on false input', function (done) {
       smithy.sass('false css #garbage\ncolor:lol', {}, function (error) {
         expect(error).to.be.a('object');
-        expect(error.message).to.equal('Invalid CSS after \"color:lol\": expected \"{\", was \"\"');
+        expect(error.message).to.equal('invalid top-level expression');
         done();
       });
     });
