@@ -22,14 +22,17 @@
     "coffee-script": "1.9.x",
     "less": "2.5.x",
     "nib": "1.0.x",
-    "node-sass": "2.1.x",
-    "stylus": "0.50.x",
-    "rework": "0.20.2",
+    "node-sass": "4.5.x",
+    "stylus": "0.54.x",
+    "rework": "0.20.x",
     "react-tools": "0.13.x"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/bigpipe/smithy.git"
+  },
+  "engines": {
+    "node": ">8.0"
   },
   "keywords": [
     "Preprocessing",
