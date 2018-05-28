@@ -24,7 +24,7 @@
     "nib": "1.0.x",
     "node-sass": "2.1.x",
     "stylus": "0.50.x",
-    "rework": "0.20.2",
+    "rework": "0.20.x",
     "react-tools": "0.13.x"
   },
   "repository": {

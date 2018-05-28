@@ -201,7 +201,9 @@ describe('Smithy', function () {
       this.timeout(2E4);
       smithy.less(content, { paths: [  __dirname + '/fixtures' ] }, function (error, processed) {
         expect(error).to.equal(null);
-        expect(processed).to.include("#header {\n  color: #4d926f;\n");
+        expect(processed).to.include("#header {\n  color:");
+        expect(processed).to.include("#body {\n  color:");
+
         done();
       });
     });
@@ -235,6 +237,7 @@ describe('Smithy', function () {
 
       this.timeout(2E4);
       smithy.sass(content, { includePaths: [ __dirname + '/fixtures' ] }, function (error, processed) {
+        expect(error).to.equal(null);
         expect(processed).to.equal("body {\n  color: #4D926F; }\n\nbody {\n  font: 100% Helvetica, sans-serif;\n  color: #333; }\n");
         done();
       });
