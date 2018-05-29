@@ -1,6 +1,6 @@
 {
   "name": "smithy",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Preprocessing of CSS/JS meta-languages made easy through a singular API.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "test-travis": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- $(find test -name '*.test.js')"
   },
   "dependencies": {
-    "canihaz": "1.0.x"
+    "canihaz": "1.1.x"
   },
   "devDependencies": {
     "chai": "1.9.x",
